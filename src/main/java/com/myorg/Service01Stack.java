@@ -26,7 +26,7 @@ public class Service01Stack extends Stack {
                 .taskImageOptions(
                         ApplicationLoadBalancedTaskImageOptions.builder()
                         		.containerName("curso_aws_cdk")
-                        		.image(ContainerImage.fromRegistry("atharnan/curso_aws_java:1.0.0"))
+                        		.image(ContainerImage.fromRegistry("atharnan/curso_aws_java:1.1.0"))
                                 .containerPort(8080)
                                 .logDriver(LogDriver.awsLogs(AwsLogDriverProps.builder()
                                         .logGroup(LogGroup.Builder.create(this, "Service01LogGroup")
@@ -51,7 +51,7 @@ public class Service01Stack extends Stack {
                 .build());
 
         scalableTaskCount.scaleOnCpuUtilization("Service01AutoScaling", CpuUtilizationScalingProps.builder()
-                .targetUtilizationPercent(50)
+                .targetUtilizationPercent(70)
                 .scaleInCooldown(Duration.seconds(60))
                 .scaleOutCooldown(Duration.seconds(60))
                 .build());
